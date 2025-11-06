@@ -50,17 +50,6 @@ Sales performance analysis is critical for organizations looking to **optimize r
 
 ---
 
-## **📂 Project Structure**  
-```bash
-📁 Sales-Performance-Analysis
-│── 📂 Data          # Contains raw & cleaned data files  
-│── 📂 PowerBI       # Power BI .pbix file with reports  
-│── 📂 DAX           # Custom DAX scripts & calculations  
-│── 📂 Screenshots   # Dashboard previews & insights  
-│── 📜 README.md     # Documentation (this file)  
-```
-
-
 ## **📌 DAX Code Snippets**  
 
 ### **YoY Growth – Executive Level**  
@@ -96,17 +85,6 @@ RETURN _Result
 ```
 ---
 
-## **🚀 How to Use This Project**  
-1️⃣ **Clone the Repository**  
-```bash
-git clone https://github.com/yourusername/Sales-Performance-Analysis.git
-```  
-2️⃣ **Open Power BI and Load the `.pbix` File**  
-3️⃣ **Explore the Dashboard & Interact with Slicers**  
-4️⃣ **Review DAX Scripts for Advanced Insights**  
-
----
-
 ## **🔮 Key Learnings & Takeaways**  
 ✔️ **Understanding YoY Analysis** at both executive and operational levels  
 ✔️ **Building Interactive Power BI Dashboards** with bookmarks & storytelling  
@@ -119,15 +97,6 @@ git clone https://github.com/yourusername/Sales-Performance-Analysis.git
 ✅ **Data Analysts & BI Professionals** – Learn how to implement advanced Power BI techniques  
 ✅ **Recruiters & Hiring Managers** – Evaluate Power BI skills with a practical case study  
 ✅ **Businesses & Clients** – Gain insights into sales trends & data-driven decision-making  
-
----
-
-## **📢 Connect With Me**  
-🔗 **LinkedIn:** [Connect](https://www.linkedin.com/in/israeljosiah/)  
-🔗 **Portfolio:** [Portfolio Link](https://www.datascienceportfol.io/IsraelJosiah)  
-📧 **Email:** Israeljvow@gmail.com  
-
-🙌 If you find this project useful, don't forget to ⭐ **star** the repository! 🚀  
 
 ---
 
