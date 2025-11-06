@@ -1,0 +1,70 @@
+Varience Period YoY = 
+//MAX
+VAR _LatestVisiblePeriod = MAX( DIM_Date[Reporting Period] )
+VAR _MonthStart = 
+    CALCULATE(
+        MIN( DIM_Date[Date] ), 
+        DIM_Date[Reporting Period] = _LatestVisiblePeriod 
+    )
+VAR _Previous12Months= 
+    CALCULATE(
+        MAX( DIM_Date[Reporting Period]),
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _MonthStart, -24 ) + 1, 
+            EOMONTH( _MonthStart, -12 ) 
+        )
+    )
+VAR _Latest12Months = 
+    CALCULATE(
+        MAX( DIM_Date[Reporting Period] ),
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _MonthStart, -12 ) + 1,
+            EOMONTH( _MonthStart, 0 ) 
+        )
+    )
+
+//MIN
+VAR _LatestVisiblePeriodMIN = MIN( DIM_Date[Reporting Period] )
+VAR _MonthStartMIN = 
+    CALCULATE(
+        MIN( DIM_Date[Date] ), 
+        DIM_Date[Reporting Period] = _LatestVisiblePeriod 
+    )
+VAR _Previous12MonthsMIN= 
+    CALCULATE(
+        MIN( DIM_Date[Reporting Period]),
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _MonthStart, -24 ) + 1, 
+            EOMONTH( _MonthStart, -12 ) 
+        )
+    )
+VAR _Latest12MonthsMIN = 
+    CALCULATE(
+        MIN( DIM_Date[Reporting Period] ),
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _MonthStart, -12 ) + 1,
+            EOMONTH( _MonthStart, -0 ) 
+        )
+    )
+
+VAR _Result = 
+    "( " &
+    ( FORMAT( _Latest12MonthsMIN,"mmm YY" ) ) &
+     "-" &
+     ( FORMAT( _Latest12Months,"mmm YY" ) ) &
+    " ) vs ( " & 
+    FORMAT( _Previous12MonthsMIN,"mmm YY" ) & 
+    "-"
+    & ( FORMAT( _Previous12Months,"mmm YY" ) ) &
+    " )"
+
+RETURN
+_Result

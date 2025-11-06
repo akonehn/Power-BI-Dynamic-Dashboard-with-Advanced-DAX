@@ -1,0 +1,32 @@
+Variance Period MoM = 
+VAR _LatestVisiblePeriod = MAX( DIM_Date[Reporting Period] )
+VAR _MonthStart = 
+    CALCULATE(
+        MIN( DIM_Date[Date] ), 
+        DIM_Date[Reporting Period] = _LatestVisiblePeriod 
+    )
+VAR _PreviousCompletedMonth = 
+    CALCULATE(
+        MAX( DIM_Date[Reporting Period]),
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _MonthStart, -2 ) + 1, 
+            EOMONTH( _MonthStart, -1 ) 
+        )
+    )
+VAR _LatestCompletedMonth = 
+    CALCULATE(
+        MAX( DIM_Date[Reporting Period] ),
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _MonthStart, -1 ) + 1,
+            EOMONTH( _MonthStart, -0 ) 
+        )
+    )
+
+VAR _Result = "MoM% | "&FORMAT( _LatestCompletedMonth,"mmm YY" ) &" vs "& FORMAT( _PreviousCompletedMonth,"mmm YY" )
+
+RETURN
+_Result

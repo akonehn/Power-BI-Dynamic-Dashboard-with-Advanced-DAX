@@ -1,0 +1,12 @@
+Gross Sales MoM% Dynamic Text = 
+
+VAR _MoM = [Gross Sales MoM% Dynamic]
+
+VAR _Result = 
+SWITCH(TRUE(),
+    _MoM = BLANK(),"",
+    _MoM < 0,"▼ "&FORMAT( _MoM,"0.0"&"%" ),
+    _MoM >= 0,"▲ "&FORMAT( _MoM,"0.0"&"%" )
+)
+
+RETURN _Result

@@ -1,0 +1,38 @@
+Gross Sales MoM% Dynamic = 
+
+VAR _LatestVisiblePeriod = MAX( DIM_Date[Reporting Period] )
+
+VAR _CurrentMonthStart = 
+    CALCULATE(
+        MIN( DIM_Date[Date] ), 
+        DIM_Date[Reporting Period] = _LatestVisiblePeriod 
+    )
+
+VAR _PreviousMonthSales= 
+    CALCULATE(
+        [Gross Sales], 
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _CurrentMonthStart, -2 ) + 1, 
+            EOMONTH( _CurrentMonthStart, -1 ) 
+        )
+    )
+
+VAR _CurrentMonthSales = 
+    CALCULATE(
+        [Gross Sales], 
+        REMOVEFILTERS( DIM_Date ), 
+        DATESBETWEEN(
+            DIM_Date[Date],
+            EOMONTH( _CurrentMonthStart, -1 ) + 1, 
+            EOMONTH( _CurrentMonthStart, 0 ) 
+        )
+    )
+
+VAR _Result =
+IF(
+    _PreviousMonthSales  > 0, 
+    (_CurrentMonthSales  - _PreviousMonthSales ) / _PreviousMonthSales, BLANK() )
+
+RETURN _Result
